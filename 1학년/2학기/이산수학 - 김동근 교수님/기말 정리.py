@@ -1,3 +1,44 @@
+import numpy as np
+
+def array1():
+    a = np.array([[1,2],[3,4]])
+    b = np.array([[1,3],[2,4]])
+    print(a@b) # a, b 의 행렬 곱
+    print(a.T) # a의 전치 행렬
+    print(np.linalg.det(a)) # a의 행렬식
+    print(np.linalg.inv(b)) # b의 역행렬
+
+def insertion(arr, n):
+    
+    for i in range(1,n):
+        tmp = arr[i]
+        j = i -1
+        t = i
+        while (j >= 0):
+            if arr[j] > tmp:
+                arr[j + 1] = arr[j]
+                t = j
+            j -= 1
+        arr[t] = tmp
+
+    return arr
+
+
+def selectionsort(arr, n):
+
+    for i in range(1,n):
+        max = n-i
+        for j in range(0,n-i):
+            if arr[j] > arr[max]:
+                max = j
+        
+        if max != n-i:
+            tmp = arr[n-i]
+            arr[n-i] = arr[max]
+            arr[max] = tmp
+
+    return arr 
+
 # 미로 찾기 프로그램(그래프 탐색)
 # 입력: 미로 정보 g, 출발점 start, 도착점 end
 # 출력: 미로를 나가기 위한 이동 경로는 문자열, 나갈 수 없는 미로면 물음표("?")
@@ -33,7 +74,7 @@ maze = {
     'e': ['f', 'i'],
     'f': ['g'],
     'g': ['k', 'h'],
-    'h': ['g', 'l'],
+    'h': ['l'],
     'i': ['i'],
     'j': ['n'],
     'k': ['j'],
@@ -44,3 +85,12 @@ maze = {
     'p': ['p']
 }
 print(solve_maze(maze, 'a', 'p'))
+
+
+arr2 = [5,12,6,2,4,8]
+n1 = len(arr2)
+
+print(insertion(arr2, n1))
+print(selectionsort(arr2, n1))
+print(solve_maze(maze, 'a', 'p'))
+print(array1())
